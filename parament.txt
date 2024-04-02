@@ -1,0 +1,23 @@
+         for(int w=0; w < NF; w++){
+             printf("%d 次",(w+1));
+             printf("pitch:%d\n",pa[w].pitch);
+             printf("jitter:%d\n",pa[w].jitter);
+             printf("uv_flag:%d",pa[w].uv_flag);
+             printf("\nlsf:");
+             for (int j = 0; j < LPC_ORD ; ++j) {
+                  printf("%d ", pa[w].lsf[j]);
+             }
+             printf("\ngain:");
+             for (int k = 0; k < NUM_GAINFR ; ++k) {
+                  printf("%d ", pa[w].gain[k]);
+             }
+             printf("\nbpvc:");
+             for (int l = 0; l < NUM_BANDS ; ++l) {
+                  printf("%d ", pa[w].bpvc[l]);
+             }
+             printf("\nfs_mag:");
+             for (int m = 0; m < NUM_HARM ; ++m) {
+                  printf("%d ", pa[w].fs_mag[m]);
+             }
+             printf("\n\n");
+         }
