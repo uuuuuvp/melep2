@@ -11,8 +11,9 @@
 #define BITS_PER_FRAME 54 // 每帧的比特数，根据帧长计算
 #define SAMPLE_RATE 8000 // 采样率为 8kHz
 #define BITS_PER_SAMPLE 16
-struct melp_param pa;
-struct melp_param pat;
+
+// struct melp_param pa;
+// struct melp_param pat;
 
 typedef struct {
     char RIFF[4];// RIFF标识，表示这是一个RIFF文件
@@ -60,7 +61,7 @@ int main() {
         printf("Error opening input file.\n");
         return 1;
     }
-    output_file = fopen("action_13.wav", "wb");
+    output_file = fopen("action_14.wav", "wb");
     if (output_file == NULL) {
         printf("Error opening output file.\n");
         fclose(input_file);
@@ -79,29 +80,29 @@ int main() {
         // melpe_s(speech, bitstream); 
         // npp(speech, speech);
         analysis(speech, &pa);
-        // printf("%d",i+1);
-        //      printf("pitch:%d\n",pa.pitch);
-        //      printf("jitter:%d\n",pa.jitter);
-        //      printf("uv_flag:%d",pa.uv_flag);
-        //      printf("\nlsf:");
-        //      for (int j = 0; j < LPC_ORD ; ++j) {
-        //           printf("%d ", pa.lsf[j]);
-        //      }
-        //      printf("\ngain:");
-        //      for (int k = 0; k < NUM_GAINFR ; ++k) {
-        //           printf("%d ", pa.gain[k]);
-        //      }
-        //      printf("\nbpvc:");
-        //      for (int l = 0; l < NUM_BANDS ; ++l) {
-        //           printf("%d ", pa.bpvc[l]);
-        //      }
-        //      printf("\nfs_mag:");
-        //      for (int m = 0; m < NUM_HARM ; ++m) {
-        //           printf("%d ", pa.fs_mag[m]);
-        //      }
-        //      printf("\n\n");
-        //      i++;
-        rmquan(&pat, speech, &pa);
+        printf("%d",i+1);
+             printf("pitch:%d\n",pa.pitch);
+             printf("jitter:%d\n",pa.jitter);
+             printf("uv_flag:%d",pa.uv_flag);
+             printf("\nlsf:");
+             for (int j = 0; j < LPC_ORD ; ++j) {
+                  printf("%d ", pa.lsf[j]);
+             }
+             printf("\ngain:");
+             for (int k = 0; k < NUM_GAINFR ; ++k) {
+                  printf("%d ", pa.gain[k]);
+             }
+             printf("\nbpvc:");
+             for (int l = 0; l < NUM_BANDS ; ++l) {
+                  printf("%d ", pa.bpvc[l]);
+             }
+             printf("\nfs_mag:");
+             for (int m = 0; m < NUM_HARM ; ++m) {
+                  printf("%d ", pa.fs_mag[m]);
+             }
+             printf("\n\n");
+             i++;
+        // rmquan(&pat, speech, &pa);
         fwrite(speech, sizeof(short), FRAME_SIZE, output_file);  // 音频数据写入
         dataSize += FRAME_SIZE * sizeof(short); // 更新音频数据大小
 
